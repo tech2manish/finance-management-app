@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, User, Wallet } from "lucide-react";
+import { ArrowRight, Mail, User, Wallet } from "lucide-react";
 import api from "../api";
 
 function Welcome({ onUserCreated }) {
   const [name, setName] = useState("");
-  const [income, setIncome] = useState("");
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState({ name: "", income: "" });
+  const [errors, setErrors] = useState({ name: "", email: "" });
 
   const validate = () => {
-    const newErrors = { name: "", income: "" };
+    const newErrors = { name: "", email: "" };
     let isValid = true;
 
     if (!name.trim()) {
@@ -19,11 +19,11 @@ function Welcome({ onUserCreated }) {
       isValid = false;
     }
 
-    if (!income) {
-      newErrors.income = "Income is required";
+    if (!email) {
+      newErrors.email = "Email is required";
       isValid = false;
-    } else if (Number(income) <= 0) {
-      newErrors.income = "Income must be greater than zero";
+    } else if (Number(email) <= 0) {
+      newErrors.email = "Email must be greater than zero";
       isValid = false;
     }
 
@@ -37,7 +37,7 @@ function Welcome({ onUserCreated }) {
     setIsSubmitting(true);
     try {
       const res = await api.post("/users/create", null, {
-        params: { name, income },
+        params: { name, email },
       });
       onUserCreated(res.data);
     } catch (error) {
@@ -95,34 +95,28 @@ function Welcome({ onUserCreated }) {
 
             <div>
               <label
-                htmlFor="income"
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Monthly Income
+                Your email
               </label>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">₹</span>
+                  <Mail className="h-5 w-5 text-gray-400" aria-hidden="true" />
                 </div>
                 <input
-                  id="income"
-                  type="number"
-                  placeholder="Enter your monthly income"
-                  value={income}
-                  onChange={(e) => setIncome(e.target.value)}
-                  className={`block w-full pl-7 pr-12 py-2 border ${
-                    errors.income ? "border-red-300" : "border-gray-300"
+                  id="email"
+                  type="text"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`block w-full pl-10 pr-3 py-2 border ${
+                    errors.email ? "border-red-300" : "border-gray-300"
                   } rounded-md focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm`}
                 />
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                  <Wallet
-                    className="h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                </div>
               </div>
-              {errors.income && (
-                <p className="mt-2 text-sm text-red-600">{errors.income}</p>
+              {errors.email && (
+                <p className="mt-2 text-sm text-red-600">{errors.email}</p>
               )}
             </div>
 
@@ -186,7 +180,7 @@ function Welcome({ onUserCreated }) {
                   <div className="mt-2 text-sm text-gray-600">
                     <p>
                       We use your name to personalize your experience and your
-                      income to help track your financial health.
+                      email to help track your financial health.
                     </p>
                   </div>
                 </div>

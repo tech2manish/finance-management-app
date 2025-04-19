@@ -131,7 +131,7 @@ function AddTransaction({ userId, onTransaction }) {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0.00"
-              className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+              className="block w-full rounded-md border-gray-300 h-8 pl-7 pr-12 focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
             />
           </div>
         </div>
@@ -148,7 +148,7 @@ function AddTransaction({ userId, onTransaction }) {
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+            className="block w-full rounded-md border-gray-300 h-8 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
           >
             {categories.map((cat) => (
               <option key={cat.value} value={cat.value}>

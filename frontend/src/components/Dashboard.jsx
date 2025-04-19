@@ -38,7 +38,9 @@ function Dashboard({ user }) {
       <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <h1 className="text-xl font-bold text-gray-900">Finance Tracker</h1>
+            <h1 className="text-xl font-bold text-gray-900">
+              Personal Finance Tracker
+            </h1>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-500">Hello, {user.name}</span>
               <div className="h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center text-white font-medium">

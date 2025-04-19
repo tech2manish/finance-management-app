@@ -12,8 +12,13 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepo;
 
-    public User createUser(String name, double income) {
+    public User createUser(String email,String name, double income) {
+        Optional<User> savedUser = userRepo.findByEmail(email);
+        if(savedUser.isPresent()){
+            return savedUser.get();
+        }
         User user = new User();
+        user.setEmail(email);
         user.setName(name);
         user.setIncome(income);
         user.setBalance(income); // ✅ Set initial balance from income

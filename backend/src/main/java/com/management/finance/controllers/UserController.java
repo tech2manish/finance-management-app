@@ -15,17 +15,17 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestParam String name, @RequestParam double income) {
-        return ResponseEntity.ok(userService.createUser(name, income));
+    public ResponseEntity<User> createUser(@RequestParam String name, @RequestParam String email) {
+        return ResponseEntity.ok(userService.createUser(email,name, 0));
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> getUser(@PathVariable Long userId) {
-        return userService.getUser(userId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+//    @CrossOrigin(origins = "http://localhost:5173")
+//    @GetMapping("/{userId}")
+//    public ResponseEntity<User> getUser(@PathVariable Long userId) {
+//        return userService.getUser(userId)
+//                .map(ResponseEntity::ok)
+//                .orElse(ResponseEntity.notFound().build());
+//    }
 
 
 }
